@@ -85,7 +85,6 @@ $(document).ready(function () {
         });
         return boundaryTableArray;
       }
-      boundaryTableToArray();
       //Function that uses this array and iterates through to convert coordinates for LAT LONG to Easting and Northing.
 
       function convertBoundaryTableArrayToUtm() {
@@ -146,7 +145,6 @@ $(document).ready(function () {
         });
         return lineTableArray;
       }
-      lineTableToArray();
       //Function that uses this array and iterates through to convert coordinates for LAT LONG to Easting and Northing.
       function convertLineTableArrayToUtm() {
         let projectedArray = [];
