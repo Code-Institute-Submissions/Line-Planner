@@ -1,7 +1,8 @@
 $("document").ready(function () {
+  //Mapbox access token
   mapboxgl.accessToken =
     "pk.eyJ1Ijoia3dzbmljayIsImEiOiJja2UzMDY3eDAwZWZvMnlwZHk2bWJ3OXkxIn0.prNYik8MEfEYiueN0vP58Q";
-
+  //Create s new mapbox map element within the #map div.
   let map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
@@ -21,41 +22,44 @@ $("document").ready(function () {
   function switchLayer(setId) {
     map.setStyle("mapbox://styles/mapbox/" + setId);
   }
-
+  //Do not show zoom controls, visualise pitch in the North arrow.
   let navControl = new mapboxgl.NavigationControl({
     showZoom: false,
     visualizePitch: true,
   });
-
+  //Enable user location functionality with htigh accuracy.
   let userLocation = new mapboxgl.GeolocateControl({
     positionOptions: {
       enableHighAccuracy: true,
     },
     trackUserLocation: true,
   });
-
+  //Enable scale bar in metres/km.
   let scale = new mapboxgl.ScaleControl({
     maxWidth: 200,
     unit: "metric",
   });
-
-  document.getElementById("toolbar").appendChild(navControl.onAdd(map));
-  document.getElementById("toolbar").appendChild(userLocation.onAdd(map));
+  //Place desired mapbox tools in custom #toolbar div.
+  document.getElementById("toolbar").appendChild(navControl.onAdd(map)); //North arrow
+  document.getElementById("toolbar").appendChild(userLocation.onAdd(map)); //User location
   map.addControl(scale, "bottom-right");
-
+  //Invoke Mapbox Draw API
   map.on("load", function () {
     let draw = new MapboxDraw({
+      //Display custom control set
       displayControlsDefault: false,
       controls: {
-        polygon: true,
-        line_string: true,
-        trash: true,
+        polygon: true, //Draw Polygon
+        line_string: true, //Draw Line
+        trash: true, //Delete
       },
     });
+    //Place mapbox draw tools in #toolbar div.
     document.getElementById("toolbar").appendChild(draw.onAdd(map));
 
-    //Draw imported Boundary Polygon
+    //Draw imported Boundary Polygon (Called from importCSV.js)
     window.importedCsvBoundaryToDraw = function (importedBoundary) {
+      //Will catch and present an alert if one is trigger from mapboxDraw API.
       try {
         draw.add(importedBoundary);
       } catch (e) {
@@ -70,7 +74,9 @@ $("document").ready(function () {
 
     //Function to delete old polygons before drawing new ones
     function deleteExistingBoundary(e) {
+      //Place features collection in a variable
       let data = draw.getAll();
+      //Get all features of features collection
       let collectedFeatures = data.features;
       //For of loop to only target Polygon Features and return the ID of the polygon
       function polygonTarget() {
@@ -111,28 +117,37 @@ $("document").ready(function () {
       //For of loop to only target Polygon Features
       function polygonTarget() {
         for (let feature of collectedFeatures) {
+          //Use turf API to get the area of the polygon
           let area = turf.area(feature);
+          //Pass this area into a new variable and convert to kilometers to 2d.p.
           let areaKm = (area / 1000).toFixed(2);
           if (feature.geometry.type === "Polygon") {
             let polygonCoords = feature.geometry.coordinates[0];
+            //Use polygonCoords and convert to a lineString in turf and then use turf to calculate the length of the linestring in kilometers to 2d.p. 
             let perimeterLength = turf
               .length(turf.lineString(polygonCoords))
               .toFixed(2);
-            $("#boundaryStatData").html(
-              `<p id="boundaryArea" class="bgGlassSmokeIncOpacity"><strong>Boundary Area (km) : </strong>` +
-                "" +
-                areaKm +
-                `</p><p id="boundaryPerimeter" class="bgGlassSmokeIncOpacity"><strong>Boundary Perimeter Length (km) : </strong>` +
-                "" +
-                perimeterLength +
-                `</p>`
-            );
+            //Call the function to write these statistics into the Statistics window. 
+            updateBoundaryStats(areaKm, perimeterLength);
             return polygonCoords;
           }
         }
       }
-      //Boundary Variable containing the coordinate array of the polygon
+      //Write the calculated polygon statistics into the relevant html elements. 
+      function updateBoundaryStats(areaKm, perimeterLength) {
+        $("#boundaryStatData").html(
+          `<p id="boundaryArea" class="bgGlassSmokeIncOpacity"><strong>Boundary Area (km) : </strong>` +
+            "" +
+            areaKm +
+            `</p><p id="boundaryPerimeter" class="bgGlassSmokeIncOpacity"><strong>Boundary Perimeter Length (km) : </strong>` +
+            "" +
+            perimeterLength +
+            `</p>`
+        );
+      }
+      //Boundary Variable containing the coordinate array of the polygon.
       let boundary = polygonTarget();
+      //Write the boundary vertices into the boundary table. 
       function writeBoundaryToTable() {
         $("#boundaryCoords>#boundaryTable>tbody>tr").remove();
         if (typeof boundary !== "undefined") {
@@ -165,8 +180,9 @@ $("document").ready(function () {
       deleteExistingLines();
     };
 
-    //Draw imported Lines
+    //Draw imported Lines (Called from importCSV.js)
     window.importedCsvLineToDraw = function (importedLine) {
+      //Will catch and present an alert if one is trigger from mapboxDraw API.
       try {
         draw.add(importedLine);
       } catch (e) {
@@ -177,7 +193,9 @@ $("document").ready(function () {
 
     //Function to delete old lines before drawing imported new ones
     function deleteExistingLines(e) {
+      //Place features collection in a variable
       let data = draw.getAll();
+      //Get all features of features collection
       let collectedFeatures = data.features;
       //For of loop to only target Line Features and return the ID of the lines to then target these ID's deletion
       function lineDeleteTarget() {
@@ -196,14 +214,18 @@ $("document").ready(function () {
     map.on("draw.update", getLineString);
     //Function to find line strings in featureCollection
     function getLineString(e) {
+      //Place features collection in a variable
       let data = draw.getAll();
+      //Get all features of features collection
       let collectedFeatures = data.features;
       //For of loop to only target Line String Features
       function lineTarget() {
         let lineFeaturesArray = [];
         for (let feature of collectedFeatures) {
           if (feature.geometry.type === "LineString") {
+            //Get coordinates of each lines vertices
             let lineCoords = feature.geometry.coordinates;
+            //Push coordinate of all vertices for an individual line into an array. 
             lineFeaturesArray.push(lineCoords);
           }
         }
@@ -215,15 +237,22 @@ $("document").ready(function () {
       //Gets line string coorinates, matches then to a line ID and writes them to a table for the user.
 
       function writeLineToTable() {
+        //Delete existing lines from Survey Lines table.
         $("#lineCoords>#lineTable>tbody>tr").remove();
+        //Delete existing line lengths from statistics.
         $("#lineStatsTable>tbody>tr").remove();
+        //Update number of lines in statistics.
         $("#lineCount").html(" ");
+        //Update total length of all lines in statistics. 
         $("#lineDistance").html(" ");
+        //Show the warning to promt users to re-calulate duration statistics. 
         $("#recalcWarning").show();
+        //As long as the line type is not undefined perform this function to write lines to Survey Lines table and calculate each line's length. 
         if (typeof lines !== "undefined") {
           let lineLengthsArray = [];
           for (let i = 0; i < lines.length; i++) {
             let lineLengthArray = [];
+            //Use turf to calculate each lines length. 
             let lineLength = turf.length(turf.lineString(lines[i])).toFixed(2);
             let lineId = i + 1;
             let line = lines[i];
@@ -267,6 +296,7 @@ $("document").ready(function () {
             let totalLineLength = lengthsToFloatArray.reduce(function (a, b) {
               return a + b;
             }, 0);
+            //Write total length of allsurvey lines to statistics.
             $("#lineDistance").html(" " + totalLineLength.toFixed(2));
           }
         }
