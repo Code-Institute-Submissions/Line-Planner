@@ -148,22 +148,26 @@ $(document).ready(function () {
       }
       lineTableToArray();
       //Function that uses this array and iterates through to convert coordinates for LAT LONG to Easting and Northing.
-      function convertBoundaryTableArrayToUtm() {
+      function convertLineTableArrayToUtm() {
         let projectedArray = [];
         for (let geodeticCoords of lineTableToArray()) {
+          let arrayOfThisProjected = [];
           let lineProjectedId = geodeticCoords[0];
           let lineTableLatLong = new LatLon(
             geodeticCoords[1],
             geodeticCoords[2]
           );
-          let lineTableUTM = lineTableLatLong.toUtm();
-          let lineNorthing = lineTableUTM["northing"];
-          let lineEasting = lineTableUTM["easting"];
-          let arrayOfThisProjected = [];
-          arrayOfThisProjected.push(lineProjectedId, lineNorthing, lineEasting);
+          try {
+            let lineTableUTM = lineTableLatLong.toUtm();
+            let lineNorthing = lineTableUTM["northing"];
+            let lineEasting = lineTableUTM["easting"];
+            arrayOfThisProjected.push(lineProjectedId, lineNorthing, lineEasting);
+          } catch (e) {
+            alert("Line Import Not Expected Coordinate Format or Geodetics " + e);
+          }
           projectedArray.push(arrayOfThisProjected);
         }
-        function writeBoundUtmToTable() {
+        function writeLineUtmToTable() {
           $("#lineCoords>#lineConverted>tbody>tr").remove();
           for (let projectedVertices of projectedArray) {
             $("#lineCoords>#lineConverted>tbody").append(
@@ -177,9 +181,9 @@ $(document).ready(function () {
             );
           }
         }
-        writeBoundUtmToTable();
+        writeLineUtmToTable();
       }
-      convertBoundaryTableArrayToUtm();
+      convertLineTableArrayToUtm();
       $("body").css("cursor", "default");
       $("#linesSubmit").html("IMPORT");
     }
