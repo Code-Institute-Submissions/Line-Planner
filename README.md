@@ -326,6 +326,12 @@ The use of this product was inline with Google API's terms of service [Google Fo
 
 ### W3C HTML Validator
 
+| Message Type | Message | Action Taken |
+| ----------------------- | ------------------- | ------------------- |
+| Error| Element p not allowed as child of element summary in this context.| None, required for correct styling (margins). |
+| Error| th start tag in table body.| None, risk of affecting scripts targeting these elements as children.|
+| Warning| The type attribute is unnecessary for JavaScript resources.| None, only advisory. |
+
 ## Deployment
 
 ### Current Version
