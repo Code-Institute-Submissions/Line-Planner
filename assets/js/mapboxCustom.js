@@ -56,7 +56,11 @@ $("document").ready(function () {
 
     //Draw imported Boundary Polygon
     window.importedCsvBoundaryToDraw = function (importedBoundary) {
-      draw.add(importedBoundary);
+      try {
+        draw.add(importedBoundary);
+      } catch (e) {
+        alert("Boundary Import " + e);
+      } 
       deleteExistingBoundary();
       getPolygon();
     };
