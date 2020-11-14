@@ -180,15 +180,43 @@ these two elements visually.
 ## Features
 
 ### Existing Features
+Users have the ability to: 
 
-### Minor Improvements
+- See a map space of the entire world.
+- Switch this map space between several visual representation styles.
+- Have an appreciation for the map view scale thanks to a scale bar.
+- Be aware of map orientation thanks to an interactive North arrow.
+- Opt in to view their location with geolocation services.
+- Obtain instant geographic position information of their mouse cursor or last touch point, dependant on device. 
+- Obtain instant projected position information including UTM Zone identification based on their mouse cursor or last touch point, dependant on device.
+- Draw a single polygon and view its geographic and projected coordinates in a table. 
+    - Overwrite the polygon quickly by drawing or importing another. 
+- Export the polygon coordinates table as a CSV as either geographic or projected coordinates. 
+- Import a csv file containing polygon information following the rules outlined in the details section below the import interface. 
+    - Allows previously exported geographic polygons to be re-imported. 
+- Obtain statistical information on the drawn or imported boundary including the area and perimeter size of the boundary. 
+- Draw multiple lines containing two or more vertices and view their geographical and projected coordinates in a table. 
+- Export the line vertices coordinates table as a CSV as either geographic or projected coordinates. 
+- Import a csv file containing line information following the rules outlined in the details section below the import interface. 
+    - Allows previously exported geographic lines to be re-imported. 
+- Obtain statistical information on the drawn or imported lines including the length and number of lines. 
+- Obtain estimated travel durations on line, between lines and a total combined duration based on user input speeds and time between one line and another. 
 
 ### Future Features
+Future features yet to be developed include:
 
-- Ability to handle a variety of file formats.
+- Export statistics to a final report. 
+- Export an image of the map space with features loaded. 
+- Improved user guidance through automatic and user instigated pop-ups/modals and tooltips. 
+- Ability to import projected coordinate csv files for both polygons and lines. 
+- Ability to import other file formats such as GeoJSON or DXF. 
+- Function to crop lines to the boundary. 
+- Function to extend lines to the boundary. 
+- Function to create new line features at a user input offset from an existing feature. 
+- On screen distance measurement via click or touch dependant on device. 
+- Ability to assign names to features and appropriately display these. 
 - Ability to save sessions locally or on the server to be loaded again later following closing of the site.
-- Ability to load and create multiple files (plans and boundaries).
-- More advanced drawing options (extending and cropping).
+- Ability to handle, load and create multiple files (plans and boundaries).
 - Ability to handle, transform a project into a variety of coordinate systems and geodetics.
 
 ## Technologies Used
