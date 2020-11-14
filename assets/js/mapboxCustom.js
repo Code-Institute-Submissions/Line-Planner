@@ -81,7 +81,6 @@ $("document").ready(function () {
           }
         }
       }
-      polygonTarget();
       let boundaryId = polygonTarget();
       //For loop to count the number of polygon objects
       function deleteExistingPolygon(e) {
@@ -132,7 +131,6 @@ $("document").ready(function () {
           }
         }
       }
-      polygonTarget();
       //Boundary Variable containing the coordinate array of the polygon
       let boundary = polygonTarget();
       function writeBoundaryToTable() {
