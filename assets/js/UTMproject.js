@@ -1,6 +1,6 @@
 import { LatLon } from "https://cdn.jsdelivr.net/npm/geodesy@2/utm.js";
 $(document).ready(function () {
-// Script to convert cursor position to UTM
+  // Script to convert cursor position to UTM
   $("#map").on("mousemove", function () {
     let cursorLat = $("#cursorLat>p>span").html();
     let cursorLong = $("#cursorLong>p>span").html();
@@ -33,7 +33,7 @@ $(document).ready(function () {
       "</span>" +
       "</p>";
   });
-//Script to convert last touch position to UTM
+  //Script to convert last touch position to UTM
   $("#map").on("touchend", function () {
     let cursorLat = $("#cursorLat>p>span").html();
     let cursorLong = $("#cursorLong>p>span").html();
@@ -66,7 +66,7 @@ $(document).ready(function () {
       "</span>" +
       "</p>";
   });
-// Boundary Geodetics to UTM Proejcted Coordinates
+  // Boundary Geodetics to UTM Proejcted Coordinates
   $(document).on("keydown", function (event) {
     if (event.keyCode === 13) {
       //Code to turn boundary table data into an array
@@ -91,17 +91,22 @@ $(document).ready(function () {
       function convertBoundaryTableArrayToUtm() {
         let projectedArray = [];
         for (let geodeticCoords of boundaryTableToArray()) {
+          let arrayOfThisProjected = [];
           let boundTableLatLong = new LatLon(
             geodeticCoords[0],
             geodeticCoords[1]
           );
-          let boundTableUTM = boundTableLatLong.toUtm();
-          let boundNorthing = boundTableUTM["northing"];
-          let boundEasting = boundTableUTM["easting"];
-          let arrayOfThisProjected = [];
-          arrayOfThisProjected.push(boundNorthing, boundEasting);
-          projectedArray.push(arrayOfThisProjected);
+          try {
+            let boundTableUTM = boundTableLatLong.toUtm();
+            let boundNorthing = boundTableUTM["northing"];
+            let boundEasting = boundTableUTM["easting"];
+            arrayOfThisProjected.push(boundNorthing, boundEasting);
+          } catch (e) {
+            alert(
+              "Boundary Import Not Expected Coordinate Format or Geodetics " + e);
+          }
         }
+
         function writeBoundUtmToTable() {
           $("#boundaryCoords>#boundaryConverted>tbody>tr").remove();
           for (let projectedVertices of projectedArray) {
@@ -121,8 +126,8 @@ $(document).ready(function () {
       $("#boundarySubmit").html("IMPORT");
     }
   });
-// Line Geodetics to UTM Projected Coordinates
-   $(document).on("keydown", function (event) {
+  // Line Geodetics to UTM Projected Coordinates
+  $(document).on("keydown", function (event) {
     if (event.keyCode === 16) {
       //Code to turn line table data into an array
       //Code inspiration from Stack Overflow user Andreas Eriksson posted March 6th 2012
