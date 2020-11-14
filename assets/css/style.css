@@ -137,6 +137,11 @@ h4 {
   margin: 0;
 }
 
+.verticalCenter {
+  display: flex;
+  align-items: center;
+}
+
 a {
   color: #8e8e8e;
 }
