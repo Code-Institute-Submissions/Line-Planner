@@ -320,6 +320,12 @@ The use of this product was inline with Google API's terms of service [Google Fo
 
 ### Responsiveness
 
+The site was launched in [Am I Responsive.is](http://ami.responsivedesign.is/) to verify that the layout was responsive across various device sizes. 
+<img src="assets/images/amIResponsive.jpg">
+
+The site has also been tested for responsiveness using Google Chromes' built in devices found in its inspect utilities. 
+Examples of Google Chromes' results can be found in [wireframes.pdf](assets/docs/wireframes.pdf).
+
 ### Geodetics
 
 ### User Stories
