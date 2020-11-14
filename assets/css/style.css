@@ -431,6 +431,18 @@ footer > div {
 }
 
 /*Backgrounds*/
+.bgGlassWhite {
+  background-image: linear-gradient(
+    135deg,
+    rgba(237, 237, 237, 0.75),
+    rgba(255, 255, 255, 0.85),
+    rgba(227, 227, 227, 0.85)
+  );
+  border-width: 0.5px;
+  border-color: rgba(255, 255, 255, 0.25);
+  border-style: outset;
+}
+
 .bgGlassSmoke {
   background-image: linear-gradient(
     135deg,
