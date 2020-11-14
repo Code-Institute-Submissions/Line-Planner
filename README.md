@@ -332,6 +332,9 @@ The use of this product was inline with Google API's terms of service [Google Fo
 | Error| th start tag in table body.| None, risk of affecting scripts targeting these elements as children.|
 | Warning| The type attribute is unnecessary for JavaScript resources.| None, only advisory. |
 
+### W3C CSS Validator
+No errors were detected in style.css or mapboxOveride.css.
+
 ## Deployment
 
 ### Current Version
