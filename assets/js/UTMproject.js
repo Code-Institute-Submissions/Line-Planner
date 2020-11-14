@@ -105,6 +105,7 @@ $(document).ready(function () {
             alert(
               "Boundary Import Not Expected Coordinate Format or Geodetics " + e);
           }
+          projectedArray.push(arrayOfThisProjected);
         }
 
         function writeBoundUtmToTable() {

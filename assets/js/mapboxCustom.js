@@ -47,10 +47,10 @@ $("document").ready(function () {
     let draw = new MapboxDraw({
       displayControlsDefault: false,
       controls: {
-          polygon: true,
-          line_string: true,
-          trash: true,
-      }
+        polygon: true,
+        line_string: true,
+        trash: true,
+      },
     });
     document.getElementById("toolbar").appendChild(draw.onAdd(map));
 
@@ -60,7 +60,7 @@ $("document").ready(function () {
         draw.add(importedBoundary);
       } catch (e) {
         alert("Boundary Import " + e);
-      } 
+      }
       deleteExistingBoundary();
       getPolygon();
     };
@@ -113,11 +113,21 @@ $("document").ready(function () {
       function polygonTarget() {
         for (let feature of collectedFeatures) {
           let area = turf.area(feature);
-          let areaKm = (area/1000).toFixed(2);
+          let areaKm = (area / 1000).toFixed(2);
           if (feature.geometry.type === "Polygon") {
             let polygonCoords = feature.geometry.coordinates[0];
-            let perimeterLength = (turf.length(turf.lineString(polygonCoords))).toFixed(2);
-            $("#boundaryStatData").html(`<p id="boundaryArea" class="bgGlassSmokeIncOpacity"><strong>Boundary Area (km) : </strong>` + "" + areaKm + `</p><p id="boundaryPerimeter" class="bgGlassSmokeIncOpacity"><strong>Boundary Perimeter Length (km) : </strong>` + "" + perimeterLength + `</p>`);
+            let perimeterLength = turf
+              .length(turf.lineString(polygonCoords))
+              .toFixed(2);
+            $("#boundaryStatData").html(
+              `<p id="boundaryArea" class="bgGlassSmokeIncOpacity"><strong>Boundary Area (km) : </strong>` +
+                "" +
+                areaKm +
+                `</p><p id="boundaryPerimeter" class="bgGlassSmokeIncOpacity"><strong>Boundary Perimeter Length (km) : </strong>` +
+                "" +
+                perimeterLength +
+                `</p>`
+            );
             return polygonCoords;
           }
         }
@@ -154,12 +164,16 @@ $("document").ready(function () {
 
     //Delete existing line data function call from importCSV.js
     window.deleteExistingLineFeatures = function () {
-        deleteExistingLines();
-    }
+      deleteExistingLines();
+    };
 
     //Draw imported Lines
     window.importedCsvLineToDraw = function (importedLine) {
-      draw.add(importedLine);
+      try {
+        draw.add(importedLine);
+      } catch (e) {
+        this.alert("Line Import " + e);
+      }
       getLineString();
     };
 
@@ -201,7 +215,7 @@ $("document").ready(function () {
       //Line Variable containing the coordinate array of the lineString
       let lines = lineTarget();
       //Gets line string coorinates, matches then to a line ID and writes them to a table for the user.
-      
+
       function writeLineToTable() {
         $("#lineCoords>#lineTable>tbody>tr").remove();
         $("#lineStatsTable>tbody>tr").remove();
@@ -209,10 +223,10 @@ $("document").ready(function () {
         $("#lineDistance").html(" ");
         $("#recalcWarning").show();
         if (typeof lines !== "undefined") {
-            let lineLengthsArray = [];
+          let lineLengthsArray = [];
           for (let i = 0; i < lines.length; i++) {
             let lineLengthArray = [];
-            let lineLength = (turf.length(turf.lineString(lines[i]))).toFixed(2);
+            let lineLength = turf.length(turf.lineString(lines[i])).toFixed(2);
             let lineId = i + 1;
             let line = lines[i];
             let lineCoords = [];
@@ -221,10 +235,13 @@ $("document").ready(function () {
               lineCoords.push(lineVertex);
               $("#lineCoords>#lineTable>tbody").append(
                 "<tr><td class='tableBorder'>" +
-                  lineId + "<td class='tableBorder'>" +
-                  lineCoords[j][0] + "</td><td class='tableBorder'>" + lineCoords[j][1] +
+                  lineId +
+                  "<td class='tableBorder'>" +
+                  lineCoords[j][0] +
+                  "</td><td class='tableBorder'>" +
+                  lineCoords[j][1] +
                   "</td></tr>"
-            );
+              );
             }
             //De-duplicates line ID and length array to push into final array which is tabulated in HTML
             lineLengthArray.push(lineId, lineLength);
@@ -233,25 +250,27 @@ $("document").ready(function () {
             lineLengthsArray.push(uniqueLineLengthArray);
             let lengthsToFloatArray = [];
             $("#lineStatsTable>tbody>tr").remove();
-            for (let k = 0; k <lineLengthsArray.length; k++) {
-                //Writes the line ID and Length into a table for the user in Statistics
-                $("#lineStatsTable>tbody").append(
+            for (let k = 0; k < lineLengthsArray.length; k++) {
+              //Writes the line ID and Length into a table for the user in Statistics
+              $("#lineStatsTable>tbody").append(
                 "<tr><td class='tableBorder'>" +
-                  lineLengthsArray[k][0] + "<td class='tableBorder'>" +
-                  lineLengthsArray[k][1] +"</td></tr>"
-                );
-                //Counts the number of lines and reports it into a HTML element for the user in Statistics
-                let noLines = k+1;
-                $("#lineCount").html(" " + noLines);
-                //Takes the length of each line, converts from a string to a floating number and pushes into an array.
-                lengthsToFloatArray.push(parseFloat(lineLengthsArray[k][1]));
+                  lineLengthsArray[k][0] +
+                  "<td class='tableBorder'>" +
+                  lineLengthsArray[k][1] +
+                  "</td></tr>"
+              );
+              //Counts the number of lines and reports it into a HTML element for the user in Statistics
+              let noLines = k + 1;
+              $("#lineCount").html(" " + noLines);
+              //Takes the length of each line, converts from a string to a floating number and pushes into an array.
+              lengthsToFloatArray.push(parseFloat(lineLengthsArray[k][1]));
             }
             //Sums all the line lengths in the floating number array and writes a value to 2d.p into an HTML element in Statistics.
-            let totalLineLength = lengthsToFloatArray.reduce(function(a, b){
-                return a + b;
+            let totalLineLength = lengthsToFloatArray.reduce(function (a, b) {
+              return a + b;
             }, 0);
             $("#lineDistance").html(" " + totalLineLength.toFixed(2));
-          }        
+          }
         }
       }
       writeLineToTable();
