@@ -15,22 +15,15 @@
 
 ## UX Design
 
-The Line Planner site was designed around User Experience Design
-Principles. Target users were identified and business and user
-goals were defined. A minimum viable product was determined that
-could achieve these goals. Future development potential was also
-mapped out. The scope was set to ensure the project remained
-concise and fit the strategy, and the structure reflected this
-scope whilst identifying the various APIs and technologies that
-would be used in the initial site version, as well potential future
-expansion. The skeleton of the site was defined using wireframe models,
-which assisted in making key design decisions and targets prior to
-commencing site construction, including site responsiveness considerations.
-Surface design was considered to identify suitable look and feel for this site,
-which is aimed at a mainly professional audience.
+The Line Planner site was designed around User Experience Design Principles. Target users were identified and business and user
+goals were defined. A minimum viable product was determined that could achieve these goals. Future development potential was also
+mapped out. The scope was set to ensure the project remained concise and fit the strategy, and the structure reflected this
+scope whilst identifying the various APIs and technologies that would be used in the initial site version, as well potential future
+expansion. The skeleton of the site was defined using wireframe models, which assisted in making key design decisions and targets prior to
+commencing site construction, including site responsiveness considerations. Surface design was considered to identify suitable look and 
+feel for this site, which is aimed at a mainly professional audience.
 
-A review meeting was held following the initial UXD process which refined some
-areas including suitable API technologies and the scope of the project.
+A review meeting was held following the initial UXD process which refined some areas including suitable API technologies and the scope of the project.
 
 ### Strategy
 
@@ -96,15 +89,14 @@ An opportunity importance vs feasibility assessment was carried out to inform on
 
 ### Scope
 
-The scope of the initial project version is to create a non-persistent single page interface which offers
-the user guidance, hints and tips to upload or create a basic polygon and draw and generate polyines with 2x
+The scope of the initial project version is to create a non-persistent single page interface which provides
+the user with the tools to upload or create a basic polygon and draw and generate polyines with two or more
 vertices on top of a digital map or satellite imagery workspace. The site will calculate some base statistics
 on the polygons and polylines and these features are exportable in a basic text format.
 
 - Single Page Design
   - No Navbar
   - A Logo which hovers over the Top Left of all content on the page
-  - A modal boots on start-up offering an introduction and explanation
   - The entire page is dedicated to a Map API.
     - With the exception of a minimal footer.
   - Collapsible containers which draw over the Map API to allow user input such as loading and entering data, exporting data and viewing outputs.
@@ -127,17 +119,15 @@ of the main content of the page, which is a full-page Map API area. The
 collapsing sections provide more in-depth interaction such as input forms and
 file upload/download functions and can be left expanded by the user if desired. Core
 functionality is provided more permanently over the main map area in the form of
-simple buttons. A modal automatically appears once the page is loaded to provide
-the necessary introductory content on site purpose and key instructions. It can be
-dismissed by the user and brough back at any point via a dedicated button.
+simple buttons. 
 
-A combination of a Map API, and open source library of geodesy tools provided by
-[Movable Type Ltd](https://www.movable-type.co.uk/), [Moveable Type GitHub](https://github.com/chrisveness/geodesy),
-a CSV to JSON converter provided by [Cloudmersive](https://api.cloudmersive.com/docs/convert.asp),
-JQuery and vanilla Javascript have been used to create the sites functionality.
+A combination of [Mapbox](https://www.mapbox.com/) Map APIs, and open source libraies of geodesy tools provided by
+[Movable Type Ltd](https://www.movable-type.co.uk/), [Moveable Type GitHub](https://github.com/chrisveness/geodesy)
+and [Turf.js](https://turfjs.org/), JQuery and vanilla Javascript have been used to create the sites 
+functionality.
 
-User created data is saved within session storage to allow the workspace to be quickly
-reset.
+User created data is not persistently stored allowing the workspace to be quickly reset if the page
+is refreshed.
 
 Future expansion considerations have also been considered. If the saving of data and the use
 of multiple projects is to be rolled out on the site then including the use of a login page,
@@ -155,7 +145,10 @@ As the site will initially not have more than one page, a navigation bar will no
 
 ### Skeleton
 
-The site will be responsive across all device sizes and utilise Bootstrap 4 breakpoints to achieve this. The site will be easiest to use on lg and above device sizes due to screen real estate and user input options. As Bootstrap is optimised for smaller mobile devices I will create a custom “XXL” breakpoint to accommodate extra large and high definition devices, where XL breakpoint would begin to become oversized and “blown-up”.
+The site will be responsive across all device sizes and utilise Bootstrap 4 breakpoints to achieve this. The site will 
+be easiest to use on lg and above device sizes due to screen real estate and user input options. As Bootstrap is optimised for 
+smaller mobile devices I will create a custom “XXL” breakpoint to accommodate extra large and high definition devices, where XL 
+breakpoint would begin to become oversized and “blown-up”.
 
 | Bootstrap Breakpoint ID | Minimum Pixel Width | Maximum Pixel Width |
 | ----------------------- | ------------------- | ------------------- |
@@ -173,9 +166,16 @@ Common device sizes are:
 - TVs, projectors and high definition monitors (XXL Custom sizing)
 
 [Wireframes](assets/docs/wireframes.pdf) were constructed in Basamiq Wireframe 4 in order to provide a design brief for
-the project, maximise coding productivity and minimise mission creep.
+the project, maximise coding productivity and minimise mission creep. The final product is compared to the wireframes within this document.
 
 ### Surface
+
+The site is dominated by a map API which can be presented in a variety of styles including the default street, satellite, a hydrid of these, or 
+light and dark modes. This presented a visual challeng in slecting appropriate interface controls and visuals which would be clear and legible
+across all the backdrops. The choice of mildy transparent containers which sit above the main map retain the emphasis on the map element to the user
+and the use of vibrant colours not typically found on the map element help to segrate these from the map visually. Keeping colours consistent between
+linked feature types, such as blue for the Boundary interface and the actual boundary polygon on the map assist the user in making the link between
+these two elements visually. 
 
 ## Features
 
@@ -223,13 +223,60 @@ jQuery is provided under the [MIT License](https://tldrlegal.com/license/mit-lic
 
 ### Mapbox
 
+[Mapbox Homepage](https://www.mapbox.com/)
+
+Mapbox forms the foundation platform for the map interface, providing background map data such as the street and satellite
+information, GeoJSON interaction and geographical coordinates across the page.
+
+#### License
+
+Mapbox operates a pay-as-you-go approach to useage, requiring an account and an active access token in use on the site. It
+provides a generous number of free maploads per month before costs are incurred.
+
+Mapbox is an open source project. Its license can be found here [Mapbox.js Open Source License](https://github.com/mapbox/mapbox.js/blob/publisher-production/LICENSE.md)
+
+### Mapbox draw
+
+Mapbox draw is an open source plugin designed to interact with Mapbox javascript platform to allow developers to create geospatial
+drawing functionality such as polygons and lines which have geolocated attributes, stored in GeoJSON format. It was used to
+produce the polygon and line drawing functionality and its features collection is targeted to obtain the numerical information
+presented to the user such as coordinates.
+
+#### License
+
+Mapbox draw operates an open source license [Mapbox Draw License](https://github.com/mapbox/mapbox-gl-draw/blob/main/LICENSE)
+
+### Turf
+
+Turf.js is an open source module designed to interact with geospatial data in a variety of formats including arrays and GeoJSONs
+to provide analysis and outputs to a user. It was utilised within this site to calculate areas and line lengths, and convert
+arrays to GeoJSON LineString features.
+
+#### License
+
+Turf.js is provided under the MIT license [Turf.js License](https://github.com/Turfjs/turf/blob/master/LICENSE)
+
+### Moveable Type Scripts Geodesy Library
+
+Moveable Type Scripts Geodesy Library was utilised in this project to convert WGS84 latitude and longitude coordinates obtained
+from Mapbox and Mapbox Draw into projected UTM (Universal Transverse Mercator) Easting and Northing Coordinates.
+[Moveable Type Scripts Geodesy Library](https://www.movable-type.co.uk/scripts/geodesy-library.html)
+
+#### License
+
+Moveable Type Scripts Geodesy Library is provided under the MIT license. [Chrisveness Geodesy License](https://github.com/chrisveness/geodesy/blob/master/LICENSE)
+
 ### LogoMakr
 
 Produced the brand logo using a combination of Google Fonts and icons.
 
-https://logomakr.com
+[LogoMakr Homepage](https://logomakr.com)
 
-https://logomakr.com/getstarted/terms-conditions/
+#### License
+
+Logos created via LogoMakr are approved for both personal and commercial use.
+
+[LogoMakr License](https://logomakr.com/getstarted/terms-conditions/)
 
 ### Google Fonts
 
@@ -237,23 +284,9 @@ Google Fonts offers open source font styling options for personal and commercial
 
 #### License
 
-The use of this product was inline with Google API's terms of service https://developers.google.com/terms
-
-### Font Awesome
-
-Font Awesome provides text based icons which can be manipulated and controlled by CSS styling. These were used to prompt user interaction provide visual ques to functionality.
-
-#### License
-
-Icons are licensed under the CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
-
-Fonts are licensed under SIL OFL 1.1 https://scripts.sil.org/OFL
-
-Code is licensed under MIT https://opensource.org/licenses/MIT
+The use of this product was inline with Google API's terms of service [Google Fonts Terms](https://developers.google.com/terms)
 
 ## Testing
-
-### Jasmine
 
 ### Browser Compatibility
 
@@ -286,3 +319,24 @@ Code is licensed under MIT https://opensource.org/licenses/MIT
 ## Support
 
 ## License
+
+This site is licensed under the 2-Clause BSD License
+
+Copyright 2020 Nicholas Bowley
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that 
+the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following 
+disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the 
+following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
