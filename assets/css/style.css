@@ -49,7 +49,7 @@ header {
   left: 7vw;
 }
 
-#toolbar .mapbox-ctrl-group {
+#toolbar .mapboxgl-ctrl-group {
     vertical-align: top;
 }
 
