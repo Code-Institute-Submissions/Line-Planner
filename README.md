@@ -170,8 +170,8 @@ the project, maximise coding productivity and minimise mission creep. The final 
 
 ### Surface
 
-The site is dominated by a map API which can be presented in a variety of styles including the default street, satellite, a hydrid of these, or 
-light and dark modes. This presented a visual challeng in slecting appropriate interface controls and visuals which would be clear and legible
+The site is dominated by a map API which can be presented in a variety of styles including the default street, satellite, a hybrid of these, or 
+light and dark modes. This presented a visual challenge in selecting appropriate interface controls and visuals which would be clear and legible
 across all the backdrops. The choice of mildy transparent containers which sit above the main map retain the emphasis on the map element to the user
 and the use of vibrant colours not typically found on the map element help to segrate these from the map visually. Keeping colours consistent between
 linked feature types, such as blue for the Boundary interface and the actual boundary polygon on the map assist the user in making the link between
@@ -238,6 +238,8 @@ Bootstrap Copyright is as follows: Copyright (c) 2011-2020 Twitter, Inc. Copyrig
 
 ### jQuery
 
+[jQuery Homepage](https://jquery.com/)
+
 jQuery is a JavaScript library designed to make html traversal and manipulation
 much simpler than raw JavaScript, by presenting the author with a wealth of
 simple code and commands which call on much more complex functions.
@@ -275,6 +277,8 @@ presented to the user such as coordinates.
 Mapbox draw operates an open source license [Mapbox Draw License](https://github.com/mapbox/mapbox-gl-draw/blob/main/LICENSE)
 
 ### Turf
+
+[Turf.js Homepage](https://turfjs.org/)
 
 Turf.js is an open source module designed to interact with geospatial data in a variety of formats including arrays and GeoJSONs
 to provide analysis and outputs to a user. It was utilised within this site to calculate areas and line lengths, and convert
@@ -346,7 +350,7 @@ To confirm the UTM projection component was correctly projecting the WGS84 coord
 the site and compared to a third party tool for projections. The third party tool utilised in this instance was [QPS Qinsy](https://qps.nl/) v9.2.2 hydrographic acquistion software
 which utilises a comprehensive suite of geodetic transformations and projects based upon [EPSG](https://epsg.org/home.html) (Eurpoean Petroleum Survey Group) standards.  
 
-|WGS84 LAT| WGS84 LONG|UTM Zone| Site Northing| Site Easting| QPS Qinsy Northing| QPS Qinsy Easting|
+|WGS84 LAT| WGS84 LONG|UTM Zone| Website Northing| Website Easting| QPS Qinsy Northing| QPS Qinsy Easting|
 |---------|-----------|--------|--------------|-------------|-------------------|------------------|
 |53.4518973|-3.0511340|30N|5922543.51|496604.32|5922543.51|496604.32|
 |51.1259304|10.0731290|32N|5664376.51|575096.08|5664376.51|575096.08|
@@ -402,11 +406,191 @@ be utilised in preference to others to ensure full compatibility and functionali
 
 ## User Guide
 
+The following guide will guide a user through each key function of the site. 
+
+### How to navigate the Map Space
+Use the scroll wheel or finger pinch on touch screen devices to zoom in or out. 
+
+Go to your location by clicking the "Find my location" button in the toolbar and accepting any permissions as required. 
+
+<img src="assets/images/findMyLocation.jpg">
+
+Pan across the map by left click and dragging the map, or touch hold and drag on touch screen devices. 
+
+Rotate the map view by right click and holding and then moving the mouse, or double finger holding and rotating on touch
+screen devices. Reset the map rotation by clicking the North arrow in the toolbar. 
+
+<img src="assets/images/northArrow.jpg">
+
+### How to view map coordinates
+On devices with a mouse input device hover your mouse over any position on the map and read the latitude, Longitude, Easting, Northing
+and UTM Zone information presented in the footer. This live infomation corresponds to your mouse position. 
+
+<img src="assets/images/footerCoords.jpg">
+
+On touch screen devices the last touched position in the map will be displayed in the footer. 
+
+<img src="assets/images/footerCoordsPhone.jpg">
+
+### How to Draw a Polygon Boundary on the Map Space
+
+To draw a new boundary polygon select the Polygon tool from the toolbar.
+
+<img src="assets/images/polygonTool.jpg">
+
+When using a mouse left click on locations over the map space where you desire a polygon vertices (corner)
+to be. For touch screen devices touch the desired locations. 
+
+<img src="assets/images/drawPolygon.jpg">
+
+Left and then Right click on the last desired location in the polygon to close the polygon and complete the shape. For touch screen
+devices double touch to close. 
+
+Left click or touch outside the polygon to finalise the polygon. 
+
+<img src="assets/images/finalPolygon.jpg">
+
+### How to Edit the Polygon Boundary on the Map Space
+
+Double click or touch the finalised polygon to edit its vertices and shape. Here you can drag the vertices, delete them by selecting
+the vertices to delete and pressing the delete key on your keyboard or Delete tool in the toolbar and add in new ones at nodes between the existing vertices. 
+
+<img src="assets/images/editPolygon.jpg">
+
+<img src="assets/images/deleteTool.jpg">
+
+A single click or touch on the polygon will allow you to click/touch hold and drag the polygon across the map space 
+or delete the entire shape via the delete key or delete tool in the toolbar. 
+
+### How to View the Polygon Boundary Coordinates
+
+To view the geodetic and projected coordinates of the vertices which comprise your polygon, click the "Boundary" header tab on the left
+of the map space to expand the boundary interface. Here you will see a tables comprising of the vertices data. 
+
+<img src="assets/images/polygonCoords.jpg">
+
+### How to Export and Save the Polygon Boundary Coordinates
+
+To save an ASCII CSV file of the coordinates presented in the boundary table click "Export Geodetic Coords to CSV" and/or "Export Projected 
+Coords to CSV". These buttons will save a file to your designated downloads folder. 
+
+<mark>It is recommended to always export Geodetic Coords when a boundary is drawn as this format can be imported back into the site later if required.</mark>
+
+### How to Import a Polygon Boundary Coordinates
+
+Line Planner can import its own Geodetic Coords to CSV export file, allowing the user to save their work and re-load it later. 
+
+If coordinates are provided prior to using Line Planner the user can follow the guidance presented in the details provided with the import function to create
+a custom file which adheres to the export file format. 
+
+<img src="assets/images/importBoundary.jpg">
+
+The import file must comply with these standards and be presented as below in a standard text editor such as notepad. 
+
+<img src="assets/images/boundaryImportFormat.jpg">
+
+<mark>Note the first and last coordinates <strong>MUST</strong> be the same.</mark>
+
+Once a polygon is drawn or imported any further imported or drawn polygon will <mark>delete the existing polygon and replace it.</mark> 
+Only one polygon can exist in Line Planner at any one time. 
+
+### How to Draw Lines on the Map Space
+
+To draw a line select the LineString tool from the toolbar.
+
+<img src="assets/images/lineStringTool.jpg">
+
+When using a mouse left click on locations over the map space where you desire a line vertices (corner)
+to be. For touch screen devices touch the desired locations. 
+
+<img src="assets/images/drawLine.jpg">
+
+Left and then Right click on the last desired location in the line to close the line and complete the shape. For touch screen
+devices double touch to close. 
+
+Left click or touch outside the line to finalise the line. 
+
+<img src="assets/images/finalLine.jpg">
+
+### How to Edit a Line on the Map Space
+
+Double click or touch the finalised line to edit its vertices. Here you can drag the vertices, delete them by selecting
+the vertices to delete and pressing the delete key on your keyboard or Delete tool in the toolbar and add in new ones at nodes between the existing vertices. 
+
+<img src="assets/images/editLine.jpg">
+
+<img src="assets/images/deleteTool.jpg">
+
+A single click or touch on the line will allow you to click/touch hold and drag the line across the map space 
+or delete the entire shape via the delete key or delete tool in the toolbar. 
+
+### How to View Line Coordinates
+
+To view the geodetic and projected coordinates of the vertices which comprise your lines, click the "Survey Lines" header tab on the left
+of the map space to expand the Survey Lines interface. Here you will see a tables comprising of the vertices data with a line ID number next to 
+each vertices to indicate which line the vertices belongs to. 
+
+<img src="assets/images/lineCoords.jpg">
+
+### How to Export and Save the Line Coordinates
+
+To save an ASCII CSV file of the coordinates presented in the lines table click "Export Geodetic Coords to CSV" and/or "Export Projected 
+Coords to CSV". These buttons will save a file to your designated downloads folder. 
+
+<mark>It is recommended to always export Geodetic Coords regularly when drawing lines as this format can be imported back into the site later if required.</mark>
+
+### How to Import Line Coordinates
+
+Line Planner can import its own Geodetic Coords to CSV export file, allowing the user to save their work and re-load it later. 
+
+If coordinates are provided prior to using Line Planner the user can follow the guidance presented in the details provided with the import function to create
+a custom file which adheres to the export file format. 
+
+<img src="assets/images/importLine.jpg">
+
+The import file must comply with these standards and be presented as below in a standard text editor such as notepad. 
+
+<img src="assets/images/lineImportFormat.jpg">
+
+<mark>Note line ID is critical to line imports.</mark>
+
+Importing a line file will <mark>delete all existing lines and replace them.</mark> 
+
+### How to Obtain Statistics
+
+Line Planner calculates key statistics about your boundary and lines. 
+
+Expand the "Statistics" interface by clicking or touching the "Statistics header on the right. 
+
+<img src="assets/images/statsInterface.jpg">
+
+Some statistics are calculated automatically such as Boundary Area, Perimeter, Line Lengths, Number of Lines and Total Line Length.
+
+The statistics interface allows the user to enter an estimated survey speed in metres per second, and an estimated time taken between
+one line and the next (turn time). Entering a speed value is essential whilst turn time is optional. Once speed and turn time have been entered
+the user can hit "Calculate Survey Duration" to obtain Acquistion, Turn and Total Survey Durations in hours, minutes and seconds. 
+
+<img src="assets/images/surveyDurations.jpg">
+
+If the user then alters the line plan the statistics window will warn the user that the durations may be out of date, and the calculation should be 
+re-performed. 
+
+<img src="assets/images/alteredWarning.jpg">
+
 ## Credits
 
 ### Content
 
+Site content is original and developed by the author to offer services/functionality free-of-charge. No liability is assumed for any user experiences or results obtained from this website 
+and users utilise this site, its functionality and its outputs at their own risk. 
+
+The content, functionality and output was correct to the best of the authors knowledge at the time of issue (see testing for further details). 
+
 ### Media
+
+Copyright 2020 Nicholas Bowley
+
+The logo was created by the author in logomakr online tool and is accredited as per the instruction of the tool's developer. It is subject to copyright restrictions and limitations.
 
 ### Acknowledgements
 
@@ -416,6 +600,15 @@ on March 6th 2012 forming the basis for the code which performs a similar functi
 Thanks is also given to cloakedninjas response within a Stack Overflow query June 2013 regarding creating a simulated key press trigger event 
 which is utilised to trigger further listeners in this site.
 
+[Codexworld](https://www.codexworld.com/export-html-table-data-to-csv-using-javascript/) must also be mentioned for providing guidance on
+writing javascript to export files to users. 
+
+A big thank you to Moveable Type Ltd for creating the API which performs the UTM projection functions, Turf.js for creating the APIs which perform
+geospatial analysis and Mapbox GL for developing the Map API platform upon which this site is built. 
+
+Also thank you to the [Code Institute](https://codeinstitute.net/) for the training and Gitpod support files required in order to complete this site.
+
+And a special mention to Akshat Garg who provided mentoring support and guidance throughout the project.
 
 ## Contributing
 
