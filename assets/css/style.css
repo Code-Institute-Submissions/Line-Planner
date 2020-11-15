@@ -304,11 +304,6 @@ body {
   height: 85vh;
 }
 
-.coordTableOverflow {
-  max-height: 55%;
-  overflow: auto;
-}
-
 .coordTableOverflow40vh {
   max-height: 40vh;
   overflow: auto;

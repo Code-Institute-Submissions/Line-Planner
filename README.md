@@ -322,7 +322,7 @@ Site browser compatability was tested as described in the below table:
 
 |Browser| Version| Comments| Fixes Applied|
 |-------|--------|---------|--------------|
-Google Chrome| 86.0.4240.183 64-bit| Fully Functional| |
+Google Chrome| 86.0.4240.183 64-bit| Issue with overflow sizing of tables at certain media sizes.| Altered sizing from % to Vh. |
 Mozilla Firefox|	79.0 64-bit| Tolbar display: inline-block results in incorrect vertical alignment.| Assigned css property vertical-align: top to #toolbar .mapboxgl-ctrl-group.|
 Microsoft Edge|	81.0.416.77 64-bit|	
 Microsoft Internet Explorer|	11.836.18362.0|	
