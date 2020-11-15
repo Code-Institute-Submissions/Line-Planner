@@ -49,6 +49,10 @@ header {
   left: 7vw;
 }
 
+#toolbar .mapbox-ctrl-group {
+    vertical-align: top;
+}
+
 /* --------- Less than Extra Large Breakpoint----------- */
 @media (max-width: 1199px) {
   .fixedTop {

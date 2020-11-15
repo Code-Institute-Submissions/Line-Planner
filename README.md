@@ -318,6 +318,18 @@ The use of this product was inline with Google API's terms of service [Google Fo
 
 ### Browser Compatibility
 
+Site browser compatability was tested as described in the below table:
+
+|Browser| Version| Comments| Fixes Applied|
+|-------|--------|---------|--------------|
+Google Chrome| 86.0.4240.183 64-bit| Fully Functional| |
+Mozilla Firefox|	79.0 64-bit| Tolbar display: inline-block results in incorrect vertical alignment.| Assigned css property vertical-align: top to #toolbar .mapboxgl-ctrl-group.|
+Microsoft Edge|	81.0.416.77 64-bit|	
+Microsoft Internet Explorer|	11.836.18362.0|	
+Samsung Internet|	11.2.1.3|	
+Opera|	68.0.3618.125 64 bit|		
+Apple Safari|	N/A	Could not be tested.|
+
 ### Responsiveness
 
 The site was launched in [Am I Responsive.is](http://ami.responsivedesign.is/) to verify that the layout was responsive across various device sizes. 
