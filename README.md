@@ -346,11 +346,21 @@ To confirm the UTM projection component was correctly projecting the WGS84 coord
 the site and compared to a third party tool for projections. The third party tool utilised in this instance was [QPS Qinsy](https://qps.nl/) v9.2.2 hydrographic acquistion software
 which utilises a comprehensive suite of geodetic transformations and projects based upon [EPSG](https://epsg.org/home.html) (Eurpoean Petroleum Survey Group) standards.  
 
-|WGS84 LAT| WGS84 LONG| Site Northing| Site Easting| QPS Qinsy Northing| QPS Qinsy Easting|
-|---------|-----------|--------------|-------------|-------------------|------------------|
-|53.4518973|-3.0511340|5922543.51|496604.32|5922543.51|496604.32|
+|WGS84 LAT| WGS84 LONG|UTM Zone| Site Northing| Site Easting| QPS Qinsy Northing| QPS Qinsy Easting|
+|---------|-----------|--------|--------------|-------------|-------------------|------------------|
+|53.4518973|-3.0511340|30N|5922543.51|496604.32|5922543.51|496604.32|
+|51.1259304|10.0731290|32N|5664376.51|575096.08|5664376.51|575096.08|
+|-23.4932992|133.6083969|53S|7401182.43|357900.29|7401182.43|357900.29|
 
 ### User Stories
+
+During the scope phase of UX design for this project three user stories were identified. These have been assessed against the current product to ascertain the suitability of the product to the end user based on the initial design objectives. 
+
+| User                                                                                     | Story Assessment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tender coordinator or similar within a hydrographic or aerial survey acquisition company | I can obtain survey time duration estimates quickly without a requirement for bespoke software or significant expertise. I can load thrid party supplied coordinates into the platform by following the guidance provided. I can only do this with WGS84 coordinates and not projected coordinates. I can export my work for further use and to save my progress.|
+| Sole trading independent remotely piloted aerial vehicle operator.                       | The platform interaction is familiar to me having many similairities to publicly consumed apps such as Google Maps. I have a range of map styles to choose from to assess any potential safety concerns, such as proximity to airports or vegetation cover. I was able to create a waypoint listing from lines I drew, and put them into my drone mission planner. |
+| Competent surveyor/GIS/CAD technician                                                    | I was able to use the csv exports from Line Planner and import them into my CAD/GIS package be defining the file format parameters. I was then able to continue to work on this plan to make it ready for a live survey project that is readable by our acquistion software QPS Qinsy. |
 
 ### W3C HTML Validator
 
