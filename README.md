@@ -318,17 +318,19 @@ The use of this product was inline with Google API's terms of service [Google Fo
 
 ### Browser Compatibility
 
+Google Chrome is the recommended platform for this site. 
+
 Site browser compatability was tested as described in the below table:
 
 |Browser| Version| Comments| Fixes Applied|
 |-------|--------|---------|--------------|
 Google Chrome| 86.0.4240.183 64-bit| Issue with overflow sizing of tables at certain media sizes.| Altered sizing from % to Vh. |
-Mozilla Firefox|	79.0 64-bit| Tolbar display: inline-block results in incorrect vertical alignment.| Assigned css property vertical-align: top to #toolbar .mapboxgl-ctrl-group.|
-Microsoft Edge|	81.0.416.77 64-bit|	
-Microsoft Internet Explorer|	11.836.18362.0|	
-Samsung Internet|	11.2.1.3|	
-Opera|	68.0.3618.125 64 bit|		
-Apple Safari|	N/A	Could not be tested.|
+Mozilla Firefox| 79.0 64-bit| Toolbar display: inline-block results in incorrect vertical alignment.| Assigned css property vertical-align: top to #toolbar .mapboxgl-ctrl-group.|
+Microsoft Edge|	86.0.622.69 64-bit|	Fully Functional| |
+Microsoft Internet Explorer| 11.630.19041.0| None functional. Mapbox API will not load, interface elements will not load.| None. Legacy platform not supported by mapbox gl or this site.| 	
+Samsung Internet| 12.1.4.3| minor left interface header width intermittent issue whereby it sometimes becomes larger than intended.| No fixed at this time.|
+Opera|	72.0.3815.186 64 bit| Fully Functional| |	
+Apple Safari|	N/A	Could not be tested.|Microsoft Windows no longer supported.| |
 
 ### Responsiveness
 
