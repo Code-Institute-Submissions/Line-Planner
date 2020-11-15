@@ -8,6 +8,19 @@
 4. Testing
 5. Deployment
 6. User Guide
+    - How to Navigate the Map Space
+    - How to View Map Coordinates
+    - How to Draw a Polygon Boundary on the Map Space
+    - How to Edit the Polygon Boundary on the Map Space
+    - How to View the Polygon Boundary Coordinates
+    - How to Export and Save the Polygon Boundary Coordinates
+    - How to Import a Polygon Boundary Coordinates
+    - How to Draw Lines on the Map Space
+    - How to Edit a Line on the Map Space
+    - How to View Line Coordinates
+    - How to Export and Save the Line Coordinates
+    - How to Import Line Coordinates
+    - How to Obtain Statistics
 7. Credits
 8. Contributing
 9. Support
@@ -406,9 +419,9 @@ be utilised in preference to others to ensure full compatibility and functionali
 
 ## User Guide
 
-The following guide will guide a user through each key function of the site. 
+The following guide will instruct a user through each key function of the site. 
 
-### How to navigate the Map Space
+### How to Navigate the Map Space
 Use the scroll wheel or finger pinch on touch screen devices to zoom in or out. 
 
 Go to your location by clicking the "Find my location" button in the toolbar and accepting any permissions as required. 
@@ -422,7 +435,7 @@ screen devices. Reset the map rotation by clicking the North arrow in the toolba
 
 <img src="assets/images/northArrow.jpg">
 
-### How to view map coordinates
+### How to View Map Coordinates
 On devices with a mouse input device hover your mouse over any position on the map and read the latitude, Longitude, Easting, Northing
 and UTM Zone information presented in the footer. This live infomation corresponds to your mouse position. 
 
