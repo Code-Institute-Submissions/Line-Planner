@@ -392,7 +392,13 @@ be utilised in preference to others to ensure full compatibility and functionali
 
 ### Current Version
 
+- v1.0.0 - Intial Release
+
 ### Version History
+
+- v1.0.0 - Initial Release
+- v0.1.0 - Beta Release
+- v0.0.1 - Alpha Release
 
 ## User Guide
 
@@ -404,9 +410,20 @@ be utilised in preference to others to ensure full compatibility and functionali
 
 ### Acknowledgements
 
+Thanks must be attributed to Andreas Eriksson who posted their solution to converting a HTML table into an array in Stack Overflow 
+on March 6th 2012 forming the basis for the code which performs a similar function in UTMproject.js.
+
+Thanks is also given to cloakedninjas response within a Stack Overflow query June 2013 regarding creating a simulated key press trigger event 
+which is utilised to trigger further listeners in this site.
+
+
 ## Contributing
 
+This project is a closed example for educational and abilty demonstration purposes. Contribution is not permitted at this time.
+
 ## Support
+
+For queries or support contact nicholasbowley@googlemail.com.
 
 ## License
 
