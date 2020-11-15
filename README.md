@@ -342,6 +342,14 @@ Examples of Google Chromes' results can be found in [wireframes.pdf](assets/docs
 
 ### Geodetics
 
+To confirm the UTM projection component was correctly projecting the WGS84 coordinates into UTM Eastings and Northings a sample of coordinates were projected through
+the site and compared to a third party tool for projections. The third party tool utilised in this instance was [QPS Qinsy](https://qps.nl/) v9.2.2 hydrographic acquistion software
+which utilises a comprehensive suite of geodetic transformations and projects based upon [EPSG](https://epsg.org/home.html) (Eurpoean Petroleum Survey Group) standards.  
+
+|WGS84 LAT| WGS84 LONG| Site Northing| Site Easting| QPS Qinsy Northing| QPS Qinsy Easting|
+|---------|-----------|--------------|-------------|-------------------|------------------|
+|53.4518973|-3.0511340|5922543.51|496604.32|5922543.51|496604.32|
+
 ### User Stories
 
 ### W3C HTML Validator
@@ -356,6 +364,21 @@ Examples of Google Chromes' results can be found in [wireframes.pdf](assets/docs
 No errors were detected in style.css or mapboxOveride.css.
 
 ## Deployment
+
+The Site is stored and hosted on GitHub Pages.
+
+It consists of 1 Master branch and no other branches.
+
+The URL for the site is: https://kwsnick.github.io/Line-Planner/
+
+The URL for the GitHub Project is: https://github.com/KWSNick/Line-Planner
+
+The site contains a resticted access token to mapbox, which limits it use to specific URLs to prevent abuse by a third party. 
+
+The access token is limited to 50,000 map loads per month, with a maximum persistent load session of 12hrs before a new load is counted. 
+
+The site is designed to work on any modern browser, but was developed witihin Google Chrome version 86.0.4240.183 and it is recommended this platform 
+be utilised in preference to others to ensure full compatibility and functionality. See browser compatibility section within testing for further details. 
 
 ### Current Version
 
