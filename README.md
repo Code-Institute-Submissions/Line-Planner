@@ -435,6 +435,10 @@ screen devices. Reset the map rotation by clicking the North arrow in the toolba
 
 <img src="assets/images/northArrow.jpg">
 
+To change the map style click or touch the dropdown box in the bottom left corner and select the desired style. 
+
+<img src="assets/images/mapStyle.jpg">
+
 ### How to View Map Coordinates
 On devices with a mouse input device hover your mouse over any position on the map and read the latitude, Longitude, Easting, Northing
 and UTM Zone information presented in the footer. This live infomation corresponds to your mouse position. 
